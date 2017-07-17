@@ -1,0 +1,19 @@
+{
+  "name": "module-bank-api",
+  "version": "1.0.0",
+  "description": "ModuleBank API",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "modulebank",
+    "module",
+    "bank"
+  ],
+  "author": "Igor Golovin",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
