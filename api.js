@@ -1,3 +1,5 @@
+"use strict";
+
 let request = require('request');
 
 
@@ -9,11 +11,11 @@ module.exports = class ModuleBankApi {
 	 * @param token - токен авторизации
 	 * @param sandbox - включить/выключить режим песочницы
 	 */
-	constructor(token, sandbox=false) {
+	constructor(token, sandbox) {
 		this.API_BASE_URL = 'https://api.modulbank.ru/v1/';
 
 		this.token = token;
-		this.sandbox = sandbox;
+		this.sandbox = sandbox || false;
 	}
 
 	/**
@@ -59,7 +61,10 @@ module.exports = class ModuleBankApi {
 		this.sendRequest('operation-upload/1c', {document: document}, callback);
 	}
 
-	sendRequest(methodUrl, data={}, callback=function () {}) {
+	sendRequest(methodUrl, data, callback) {
+		data = data || {};
+		callback = callback || function () {};
+
 		let options = {
 			uri: this.API_BASE_URL + methodUrl,
 			method: 'POST',
