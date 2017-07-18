@@ -1,7 +1,7 @@
 {
   "name": "module-bank-api",
-  "version": "1.0.0",
-  "description": "ModuleBank API",
+  "version": "1.1.0",
+  "description": "Wrapper forModuleBank API for Node.js",
   "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,13 @@
     "module",
     "bank"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Deadly0/module-bank-api.git"
+  },
+  "homepage": "https://github.com/Deadly0/module-bank-api",
   "author": "Igor Golovin",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "request": "^2.81.0"
   }
