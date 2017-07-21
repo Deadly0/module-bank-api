@@ -42,7 +42,9 @@ class ModuleBankApi {
 	 * }
 	 * @param callback - результат запроса
 	 */
-	getOperationHistory(bankAccountId, params={}, callback) {
+	getOperationHistory(bankAccountId, params, callback) {
+		params = params || {};
+
 		let query = {};
 
 		if (params.category !== undefined) {
