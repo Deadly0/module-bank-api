@@ -1,4 +1,4 @@
-let ModuleBankApi = require('./api');
+let {ModuleBankApi, ModuleBankPaymentCategory} = require('./api');
 
 let api = new ModuleBankApi(
 	'sandboxtoken', // Токен авторизации, получаемый от банка. https://api.modulbank.ru/auth/
@@ -17,8 +17,24 @@ api.getAccountInfo(function (error, accounts) {
 
 	let bankAccountId = accounts[0].bankAccounts[0].id;
 
-	// Получение списка операций по номеру счета
-	api.getOperationHistory(bankAccountId, function (error, operations) {
+	console.log(bankAccountId);
+
+	let from = new Date(),
+		till = new Date();
+
+	from.setMonth(3);
+	till.setMonth(5);
+
+	let query = {
+		category: ModuleBankPaymentCategory.CREDIT, // Дебет или кредит
+		skip: 2, //
+		records: 3,
+		from: from,
+		till: till,
+	};
+
+	// Получение списка операций по номеру счета и параметрам
+	api.getOperationHistory(bankAccountId, query, function (error, operations) {
 		if (error) {
 			console.error(error);
 			return;

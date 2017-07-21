@@ -3,7 +3,7 @@
 let request = require('request');
 
 
-module.exports = class ModuleBankApi {
+class ModuleBankApi {
 	/**
 	 * ModuleBankApi
 	 * https://api.modulbank.ru/auth/
@@ -33,10 +33,39 @@ module.exports = class ModuleBankApi {
 	 * https://api.modulbank.ru/data/#_6
 	 *
 	 * @param bankAccountId - системный идентификатор счета
+	 * @param params - {
+	 *  category: ModuleBankPaymentCategory.DEBET,
+	 *  from: new Date(),
+	 *  till: new Date(),
+	 *  skip: 0,
+	 *  records: 10
+	 * }
 	 * @param callback - результат запроса
 	 */
-	getOperationHistory(bankAccountId, callback) {
-		this.sendRequest('operation-history/' + bankAccountId, {}, callback);
+	getOperationHistory(bankAccountId, params={}, callback) {
+		let query = {};
+
+		if (params.category !== undefined) {
+			query.category = params.category;
+		}
+
+		if (params.from !== undefined) {
+			query.from = this.formatDate(params.from);
+		}
+
+		if (params.till !== undefined) {
+			query.till = this.formatDate(params.till);
+		}
+
+		if (params.skip !== undefined) {
+			query.skip = params.skip;
+		}
+
+		if (params.records !== undefined) {
+			query.records = params.records;
+		}
+
+		this.sendRequest('operation-history/' + bankAccountId, query, callback);
 	}
 
 	/**
@@ -80,4 +109,20 @@ module.exports = class ModuleBankApi {
 			callback(error, resp && resp.body);
 		});
 	}
+
+	formatDate(date) {
+		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+	}
+}
+
+
+let ModuleBankPaymentCategory = {
+	DEBET: 'Debet',
+	CREDIT: 'Credit',
+};
+
+
+module.exports = {
+	ModuleBankApi: ModuleBankApi,
+	ModuleBankPaymentCategory: ModuleBankPaymentCategory,
 };
