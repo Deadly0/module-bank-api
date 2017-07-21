@@ -10,7 +10,7 @@ Wrapper for [ModuleBank API](https://api.modulbank.ru/) for Node.js
 
 #### Import
 ```javascript
-let {ModuleBankApi, ModuleBankPaymentCategory} = require('module-bank-api');
+{ModuleBankApi, ModuleBankPaymentCategory} = require('module-bank-api');
 // or
 import {ModuleBankApi, ModuleBankPaymentCategory} from 'module-bank-api';
 ```
