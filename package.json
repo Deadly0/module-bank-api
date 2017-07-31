@@ -1,14 +1,14 @@
 {
   "name": "module-bank-api",
-  "version": "1.2.1",
-  "description": "Wrapper forModuleBank API for Node.js",
+  "version": "1.2.2",
+  "description": "Wrapper for Modulbank API for Node.js",
   "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "modulebank",
-    "module",
+    "modulbank",
+    "modul",
     "bank"
   ],
   "repository": {
@@ -19,6 +19,7 @@
   "author": "Igor Golovin",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.18.1",
     "request": "^2.81.0"
   }
 }

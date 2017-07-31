@@ -1,6 +1,7 @@
 "use strict";
 
 let request = require('request');
+let moment = require('moment');
 
 
 class ModuleBankApi {
@@ -113,7 +114,7 @@ class ModuleBankApi {
 	}
 
 	formatDate(date) {
-		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+		return moment(date).format('YYYY-MM-DD');
 	}
 }
 
